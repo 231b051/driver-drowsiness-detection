@@ -6,9 +6,14 @@ import cv2
 import os
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={
+    r"/*": {
+        "origins": "*",
+        "methods": ["GET", "POST", "OPTIONS"],
+        "allow_headers": ["Content-Type"]
+    }
+})
 
-# Load model safely
 try:
     import tensorflow as tf
     model = tf.keras.models.load_model(
@@ -25,6 +30,10 @@ CLASS_LABELS = ['CLOSED', 'YAWN', 'NEUTRAL']
 @app.route('/')
 def home():
     return jsonify({'status': 'Drowsiness Detection API is running!'})
+
+@app.route('/predict', methods=['OPTIONS'])
+def options():
+    return '', 200
 
 @app.route('/predict', methods=['POST'])
 def predict():
