@@ -57,7 +57,7 @@ async function sendFrameToBackend() {
   const imageData = canvas.toDataURL('image/jpeg');
 
   try {
-    const res = await fetch('https://drowsiness-backend-v2a3.onrender.com', {
+    const res = await fetch('https://drowsiness-backend-v2a3.onrender.com/predict', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ image: imageData })
