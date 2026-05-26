@@ -3,18 +3,33 @@ from flask_cors import CORS
 import numpy as np
 import base64
 import cv2
-from tensorflow.keras.models import load_model
+import os
 
 app = Flask(__name__)
 CORS(app)
 
-model = load_model('drowsiness_model.h5')
-print("✅ Model loaded!")
+# Load model safely
+try:
+    import tensorflow as tf
+    model = tf.keras.models.load_model(
+        'drowsiness_model.h5',
+        compile=False
+    )
+    print("✅ Model loaded successfully!")
+except Exception as e:
+    print(f"❌ Model loading error: {e}")
+    model = None
 
 CLASS_LABELS = ['CLOSED', 'YAWN', 'NEUTRAL']
 
+@app.route('/')
+def home():
+    return jsonify({'status': 'Drowsiness Detection API is running!'})
+
 @app.route('/predict', methods=['POST'])
 def predict():
+    if model is None:
+        return jsonify({'error': 'Model not loaded'}), 500
     try:
         data = request.json['image']
         img_data = base64.b64decode(data.split(',')[1])
@@ -39,4 +54,5 @@ def predict():
         return jsonify({'error': str(e)}), 500
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5000)
+    port = int(os.environ.get('PORT', 5000))
+    app.run(debug=False, host='0.0.0.0', port=port)
