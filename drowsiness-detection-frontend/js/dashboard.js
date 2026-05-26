@@ -53,14 +53,7 @@ async function sendFrameToBackend() {
 
   canvas.width = video.videoWidth;
   canvas.height = video.videoHeight;
-  canvas.getContext('2d').drawImage(video, 0, 0);
-  const imageData = canvas.toDataURL('image/jpeg');
-
-  try {
-    const res = await fetch('https://drowsiness-backend-v2a3.onrender.com/predict', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ image: imageData })
+c
     });
 
     const data = await res.json();
