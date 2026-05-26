@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DrowseGuard — Login</title>
+  <link rel="stylesheet" href="css/auth.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+</head>
+<body>
+  <div class="grid-bg"></div>
+
+  <div class="auth-wrapper">
+    <div class="brand">
+      <span class="brand-icon">👁️</span>
+      <h1>DrowseGuard</h1>
+      <p>AI-Powered Driver Safety System</p>
+    </div>
+
+    <div class="card">
+      <h2>Welcome Back</h2>
+      <p class="subtitle">Login to access your dashboard</p>
+
+      <div id="error-msg" class="error-msg hidden"></div>
+
+      <div class="input-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" placeholder="you@example.com" />
+      </div>
+
+      <div class="input-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="••••••••" />
+      </div>
+
+      <button class="btn-primary" onclick="handleLogin()">Login</button>
+
+      <p class="switch-auth">Don't have an account? <a href="pages/signup.html">Sign Up</a></p>
+    </div>
+  </div>
+
+  <script src="js/auth.js"></script>
+</body>
+</html>

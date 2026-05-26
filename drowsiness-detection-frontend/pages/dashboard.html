@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DrowseGuard — Dashboard</title>
+  <link rel="stylesheet" href="../css/dashboard.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-brand">
+      <span>👁️</span> DrowseGuard
+    </div>
+    <div class="nav-right">
+      <span id="user-name" class="user-badge">👤 User</span>
+      <button class="btn-logout" onclick="logout()">Logout</button>
+    </div>
+  </nav>
+
+  <!-- ALERT BANNER -->
+  <div id="alert-banner" class="alert-banner hidden">
+    ⚠️ DROWSINESS DETECTED — PLEASE PULL OVER!
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <main class="dashboard-main">
+
+    <!-- Camera Section -->
+    <section class="camera-section">
+      <div class="section-header">
+        <h2>Live Camera Feed</h2>
+        <div class="status-dot" id="status-dot"></div>
+        <span id="status-label">Inactive</span>
+      </div>
+
+      <div class="camera-box">
+        <video id="video" autoplay playsinline></video>
+        <canvas id="canvas" style="display:none;"></canvas>
+        <div id="camera-placeholder" class="camera-placeholder">
+          <span>📷</span>
+          <p>Camera not started</p>
+        </div>
+      </div>
+
+      <div class="camera-controls">
+        <button class="btn-start" id="startBtn" onclick="startCamera()">▶ Start Detection</button>
+        <button class="btn-stop hidden" id="stopBtn" onclick="stopCamera()">■ Stop</button>
+      </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+
+      <div class="stat-card">
+        <p class="stat-label">Detection Status</p>
+        <p class="stat-value" id="detection-status">—</p>
+      </div>
+
+      <div class="stat-card">
+        <p class="stat-label">Session Duration</p>
+        <p class="stat-value" id="session-timer">00:00</p>
+      </div>
+
+      <div class="stat-card">
+        <p class="stat-label">Alerts Triggered</p>
+        <p class="stat-value" id="alert-count">0</p>
+      </div>
+
+      <div class="stat-card">
+        <p class="stat-label">Eye State</p>
+        <p class="stat-value" id="eye-state">—</p>
+      </div>
+
+      <!-- Log Section -->
+      <div class="log-card">
+        <p class="stat-label">Event Log</p>
+        <ul id="event-log" class="event-log">
+          <li class="log-item muted">No events yet...</li>
+        </ul>
+      </div>
+
+    </section>
+  </main>
+
+  <script src="../js/dashboard.js"></script>
+</body>
+</html>
