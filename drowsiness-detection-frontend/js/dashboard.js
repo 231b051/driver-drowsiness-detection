@@ -156,5 +156,5 @@ function addLog(msg, type = 'normal') {
 
 function logout() {
   localStorage.removeItem('dg_session');
-  window.location.href = '/index.html';
+  window.location.href = '../index.html';
 }
