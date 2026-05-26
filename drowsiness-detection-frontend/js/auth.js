@@ -1,4 +1,4 @@
-// Simple localStorage-based auth (no backend needed for now)
+// Simple localStorage-based auth
 
 function handleSignup() {
   const name = document.getElementById('name').value.trim();
@@ -31,7 +31,7 @@ function handleSignup() {
 
   successEl.textContent = '✅ Account created! Redirecting to login...';
   successEl.classList.remove('hidden');
-  setTimeout(() => { window.location.href = '../index.html'; }, 1800);
+  setTimeout(() => { window.location.href = '/index.html'; }, 1800);  // ← fixed
 }
 
 function handleLogin() {
@@ -52,7 +52,7 @@ function handleLogin() {
   }
 
   localStorage.setItem('dg_session', JSON.stringify({ name: user.name, email: user.email }));
-  window.location.href = 'pages/dashboard.html';
+  window.location.href = '/pages/dashboard.html';  // ← fixed
 }
 
 function showError(msg) {
